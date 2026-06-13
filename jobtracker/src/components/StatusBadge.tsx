@@ -1,21 +1,18 @@
-import type { JobStatus } from '../types';
-
 interface StatusBadgeProps {
-  status: JobStatus;
+  status: string;
 }
 
 export function StatusBadge({ status }: StatusBadgeProps) {
-  // Diccionario de colores Tailwind
-  const colorMap: Record<JobStatus, string> = {
-    'Enviado': 'bg-blue-100 text-blue-800',
-    'Prueba Técnica': 'bg-yellow-100 text-yellow-800',
-    'Entrevista': 'bg-purple-100 text-purple-800',
-    'Oferta': 'bg-green-100 text-green-800',
-    'Rechazado': 'bg-red-100 text-red-800',
-  };
+  let colorStyles = "bg-gray-100 text-gray-800 border-gray-200";
+
+  if (status === 'Enviado') colorStyles = "bg-blue-600 text-white border-blue-700";
+  if (status === 'Prueba Técnica') colorStyles = "bg-yellow-500 text-white border-yellow-600";
+  if (status === 'Entrevista') colorStyles = "bg-purple-600 text-white border-purple-700";
+  if (status === 'Oferta') colorStyles = "bg-green-600 text-white border-green-700";
+  if (status === 'Rechazado') colorStyles = "bg-red-600 text-white border-red-700";
 
   return (
-    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${colorMap[status]}`}>
+    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${colorStyles}`}>
       {status}
     </span>
   );

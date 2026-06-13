@@ -1,26 +1,24 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { JobProvider } from './context/JobContext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
+import { JobProvider } from './context/JobContext';
 import { Dashboard } from './pages/Dashboard';
 import { AddJob } from './pages/AddJob';
+import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
 
-function App() {
+export default function App() {
   return (
     <JobProvider>
-      <BrowserRouter>
-        <Routes>
-          {/* El Layout envuelve todas las rutas principales */}
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="add" element={<AddJob />} />
-          </Route>
-          {/* Ruta comodín para el 404, fuera del layout si quieres, o dentro */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/add" element={<AddJob />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </Router>
     </JobProvider>
   );
 }
-
-export default App;

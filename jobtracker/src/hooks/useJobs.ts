@@ -1,38 +1,32 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import type { Job } from '../types';
 
+const mockJobs: Job[] = [
+  { id: 1, empresa: 'Corner Estudios', puesto: 'Desarrollador Frontend', url: '', estado: 'Entrevista', fecha: '2026-06-09' },
+  { id: 2, empresa: 'Google', puesto: 'Android Developer', url: '', estado: 'Enviado', fecha: '2026-06-10' }
+];
+
 export function useJobs() {
-  // 1. useState: Para guardar la lista de trabajos y el estado de carga
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [jobs, setJobs] = useState<Job[]>(mockJobs);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  // 2. useEffect: Simula la carga inicial de datos desde una API cuando se abre la app
-  useEffect(() => {
-    const fetchJobs = async () => {
-      setTimeout(() => {
-        setJobs([
-          { id: '1', empresa: 'Corner Estudios', puesto: 'Desarrollador Frontend', estado: 'Entrevista', url: 'https://corner.es', fecha: '2026-06-09' },
-          { id: '2', empresa: 'Google', puesto: 'Android Developer', estado: 'Enviado', url: 'https://google.com', fecha: '2026-06-10' }
-        ]);
-        setLoading(false);
-      }, 1000);
-    };
-
-    fetchJobs();
-  }, []); 
-
-  // 3. useCallback: Memoriza esta función para que no se vuelva a crear en cada renderizado.
+  
   const addJob = useCallback((newJob: Job) => {
-    setJobs((prevJobs) => [...prevJobs, newJob]);
+    setJobs((prev) => [newJob, ...prev]);
   }, []);
 
-  // 4. useMemo: Evita recalcular las estadísticas si el array de "jobs" no ha cambiado.
+  
+  const deleteJob = useCallback((id: number) => {
+    setJobs((prev) => prev.filter((job) => job.id !== id));
+  }, []);
+
+ 
   const stats = useMemo(() => {
     return {
       total: jobs.length,
-      entrevistas: jobs.filter(job => job.estado === 'Entrevista').length,
+      entrevistas: jobs.filter(j => j.estado === 'Entrevista' || j.estado === 'Prueba Técnica').length,
     };
-  }, [jobs]); 
+  }, [jobs]);
 
-  return { jobs, loading, addJob, stats };
+  return { jobs, loading, addJob, deleteJob, stats };
 }
