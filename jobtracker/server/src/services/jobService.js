@@ -10,14 +10,16 @@ const createJob = (jobData) => {
 };
 
 const updateJob = (id, jobData) => {
-    const index = jobs.findIndex(j => j.id === Number(id));
+    
+    const index = jobs.findIndex(j => String(j.id) === String(id));
     if (index === -1) return null;
     jobs[index] = { ...jobs[index], ...jobData, updatedAt: new Date().toISOString() };
     return jobs[index];
 };
 
 const deleteJob = (id) => {
-    const index = jobs.findIndex(j => j.id === Number(id));
+    
+    const index = jobs.findIndex(j => String(j.id) === String(id));
     if (index === -1) return false;
     jobs.splice(index, 1);
     return true;
