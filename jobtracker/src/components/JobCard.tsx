@@ -107,7 +107,7 @@ export function JobCard({ job }: { job: Job }) {
                 className="w-full px-4 py-2.5 bg-white border-2 border-gray-100 rounded-xl outline-none text-sm"
               >
                 <option value="Enviado">Enviado</option>
-                <option value="Prueba Tecnica">Prueba Tecnica</option>
+                <option value="Prueba Técnica">Prueba Técnica</option>
                 <option value="Entrevista">Entrevista</option>
                 <option value="Oferta">Oferta Recibida</option>
                 <option value="Rechazado">Descartado</option>
