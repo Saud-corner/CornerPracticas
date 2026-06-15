@@ -3,23 +3,38 @@ import { JobCard } from '../components/JobCard';
 
 export function Dashboard() {
   const { jobs } = useJobContext();
-
   const totalJobs = jobs.length;
-  const totalEntrevistas = jobs.filter(job => job.estado === 'Entrevista').length;
+  const enviados = jobs.filter(job => job.estado === 'Enviado').length;
+  const entrevistas = jobs.filter(job => job.estado === 'Entrevista').length;
+  const ofertas = jobs.filter(job => job.estado === 'Oferta').length;
+  const rechazados = jobs.filter(job => job.estado === 'Rechazado').length;
 
   return (
     <div className="max-w-5xl mx-auto">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800">Tus Candidaturas</h2>
+      <div className="flex flex-col mb-8">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">Tus Candidaturas</h2>
         
-        <div className="flex gap-4">
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+        {/* Aquí están tus nuevos contadores */}
+        <div className="flex flex-wrap gap-4">
+          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
             <span className="text-sm text-gray-500 block">Total</span>
             <span className="text-xl font-bold text-blue-600">{totalJobs}</span>
           </div>
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
+            <span className="text-sm text-gray-500 block">Enviados</span>
+            <span className="text-xl font-bold text-gray-600">{enviados}</span>
+          </div>
+          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
             <span className="text-sm text-gray-500 block">Entrevistas</span>
-            <span className="text-xl font-bold text-green-600">{totalEntrevistas}</span>
+            <span className="text-xl font-bold text-yellow-600">{entrevistas}</span>
+          </div>
+          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
+            <span className="text-sm text-gray-500 block">Ofertas</span>
+            <span className="text-xl font-bold text-green-600">{ofertas}</span>
+          </div>
+          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
+            <span className="text-sm text-gray-500 block">Rechazados</span>
+            <span className="text-xl font-bold text-red-600">{rechazados}</span>
           </div>
         </div>
       </div>
