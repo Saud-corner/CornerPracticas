@@ -2,9 +2,13 @@ import { useJobContext } from '../context/JobContext';
 import { JobCard } from '../components/JobCard';
 
 export function Dashboard() {
+  
   const { jobs } = useJobContext();
-  const totalJobs = jobs.length;
+
+  
+  const total = jobs.length;
   const enviados = jobs.filter(job => job.estado === 'Enviado').length;
+  const pruebasTecnicas = jobs.filter(job => job.estado === 'Prueba Técnica').length;
   const entrevistas = jobs.filter(job => job.estado === 'Entrevista').length;
   const ofertas = jobs.filter(job => job.estado === 'Oferta').length;
   const rechazados = jobs.filter(job => job.estado === 'Rechazado').length;
@@ -14,27 +18,30 @@ export function Dashboard() {
       <div className="flex flex-col mb-8">
         <h2 className="text-3xl font-bold text-gray-800 mb-6">Tus Candidaturas</h2>
         
-        {/* Aquí están tus nuevos contadores */}
         <div className="flex flex-wrap gap-4">
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
-            <span className="text-sm text-gray-500 block">Total</span>
-            <span className="text-xl font-bold text-blue-600">{totalJobs}</span>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex-1 min-w-[120px]">
+            <p className="text-sm text-gray-500 font-medium">Total</p>
+            <p className="text-2xl font-bold text-blue-600">{total}</p>
           </div>
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
-            <span className="text-sm text-gray-500 block">Enviados</span>
-            <span className="text-xl font-bold text-gray-600">{enviados}</span>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex-1 min-w-[120px]">
+            <p className="text-sm text-gray-500 font-medium">Enviados</p>
+            <p className="text-2xl font-bold text-gray-600">{enviados}</p>
           </div>
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
-            <span className="text-sm text-gray-500 block">Entrevistas</span>
-            <span className="text-xl font-bold text-yellow-600">{entrevistas}</span>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex-1 min-w-[120px]">
+            <p className="text-sm text-gray-500 font-medium">Prueba Técnica</p>
+            <p className="text-2xl font-bold text-purple-600">{pruebasTecnicas}</p>
           </div>
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
-            <span className="text-sm text-gray-500 block">Ofertas</span>
-            <span className="text-xl font-bold text-green-600">{ofertas}</span>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex-1 min-w-[120px]">
+            <p className="text-sm text-gray-500 font-medium">Entrevistas</p>
+            <p className="text-2xl font-bold text-yellow-600">{entrevistas}</p>
           </div>
-          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 flex-1 min-w-[120px]">
-            <span className="text-sm text-gray-500 block">Rechazados</span>
-            <span className="text-xl font-bold text-red-600">{rechazados}</span>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex-1 min-w-[120px]">
+            <p className="text-sm text-gray-500 font-medium">Ofertas</p>
+            <p className="text-2xl font-bold text-green-600">{ofertas}</p>
+          </div>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex-1 min-w-[120px]">
+            <p className="text-sm text-gray-500 font-medium">Rechazados</p>
+            <p className="text-2xl font-bold text-red-600">{rechazados}</p>
           </div>
         </div>
       </div>
