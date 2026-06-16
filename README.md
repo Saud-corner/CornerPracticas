@@ -12,7 +12,7 @@ Proyecto de gestión de candidaturas para las prácticas de DAM en Corner Estudi
 
 | Despliegue | URL |
 | :--- | :--- |
-| **Frontend** | [Ver en Vercel](corner-practicas-coasguqb8-saud-corners-projects.vercel.app) |
+| **Frontend** | [Ver en Vercel](https://corner-practicas.vercel.app) |
 | **Planificaion Trello** | [Ver en Trello](https://trello.com/invite/b/6a277c0e77ca2dba87c99f54/ATTI8fcfee15818659578f58ed3fcb6f34116BA2845B/jobtracker) |
 
 ## Características
